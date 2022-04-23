@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Relógio Digital</title>
+</head>
+<body>
+    <div class="titulo">
+        <h1></h1>
+    </div>
+    <div id="time">
+        <div class="circle" style="--clr:#ff2972;">
+            <div class="dot hora_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id="hh"></circle>
+            </svg>
+            <div id="hora">00</div>
+        </div>
+        <div class="circle" style="--clr:#fee800;">
+            <div class="dot min_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id="mm"></circle>
+            </svg>
+            <div id="minuto">00</div>
+        </div>
+        <div class="circle" style="--clr:#04fc43;">
+            <div class="dot seg_dot"></div>
+            <svg>
+                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id="ss"></circle>
+            </svg>
+            <div id="segundo">00</div>
+        </div>
+        <div class="ap">
+            <div id="ampm">PM</div>
+        </div>
+    </div>
+
+    <script>
+
+        setInterval(()=>{
+        let hora = document.getElementById('hora');
+        let minuto = document.getElementById('minuto');
+        let segundo = document.getElementById('segundo');
+        let ampm = document.getElementById('ampm');
+
+        let hh = document.getElementById('hh');
+        let mm = document.getElementById('mm');
+        let ss = document.getElementById('ss');
+
+        let hora_dot = document.querySelector('.hora_dot');
+        let min_dot = document.querySelector('.min_dot');
+        let seg_dot = document.querySelector('.seg_dot');
+
+        let h = new Date().getHours();
+        let m = new Date().getMinutes();
+        let s = new Date().getSeconds();
+        let am = h >=12 ? "PM" : "AM";
+
+        // convertendo 24h para 12h
+        if(h > 12){
+            h = h - 12;
+        }
+
+        //adicionando 0 a esquesda
+        h = (h < 10) ? "0" + h: h;
+        m = (m < 10) ? "0" + m: m;
+        s = (s < 10) ? "0" + s: s;
+
+        hora.innerHTML = h + "<br><span>Hora</span>";
+        minuto.innerHTML = m + "<br><span>Minuto</span>";;
+        segundo.innerHTML = s + "<br><span>Segundo</span>";;
+        ampm.innerHTML = am;
+
+        // 12 horas clock
+        hh.style.strokeDashoffset = 440 - (440 * h) / 12;
+        // 60 minutos 
+        mm.style.strokeDashoffset = 440 - (440 * m) / 60;
+        // 60 segundos
+        ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+
+        hora_dot.style.transform = `rotate(${h * 30}deg)`;
+        // 360 / 12 = 30
+        min_dot.style.transform = `rotate(${m * 6}deg)`;
+        seg_dot.style.transform = `rotate(${s * 6}deg)`;
+        // 360 / 60 = 6
+
+    })
+
+    </script>
+</body>
+</html>
