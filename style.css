@@ -9,11 +9,43 @@
 
 body{
     display: flex;
-    justify-content: center;
+    justify-content:center;
+    flex-direction: column;
     align-items: center;
     min-height: 100vh;
     background: #2f363e;
 }
+
+#titulo {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    padding: 30px;
+    font-size: 1.5em;
+    color: white;
+}
+
+h2{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+    font-size: 1.2em;
+    color:white;
+}
+
+a{
+    text-decoration: none;
+    outline: none;
+    color: white;
+}
+a:visited{
+    color:white;
+}
+
 #time{
     display: flex;
     gap: 40px;
